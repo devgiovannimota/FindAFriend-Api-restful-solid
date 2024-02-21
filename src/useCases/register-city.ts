@@ -1,10 +1,25 @@
+import { ICitiesRepository } from "@/repositories/prisma/cities-repository";
+import { City } from "@prisma/client";
+
 interface IRegisterCityUseCaseRequest {
   name: string;
   state: string;
 }
 
-interface IRegisterCityUseCaseRequest
+interface IRegisterCityUseCaseResponse {
+  city: City;
+}
 
 export class RegisterCityUseCase {
-  async execute({}: IRegisterCityUseCaseRequest): Promise<> {}
+  constructor(private citiesRepository: ICitiesRepository) {}
+  async execute({
+    name,
+    state,
+  }: IRegisterCityUseCaseRequest): Promise<IRegisterCityUseCaseResponse> {
+    const city = await this.citiesRepository.create({
+      name,
+      state,
+    });
+    return { city };
+  }
 }
