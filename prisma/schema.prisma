@@ -22,10 +22,11 @@ model Pet {
   sex             String
   characteristics Json
   description     String
-  cityId          String
-  orgId           String
-  city            City   @relation(fields: [cityId], references: [id])
-  organization    Org    @relation(fields: [orgId], references: [id])
+
+  cityId       String
+  orgId        String
+  city         City   @relation(fields: [cityId], references: [id])
+  organization Org    @relation(fields: [orgId], references: [id])
 
   @@map("Pets")
 }
@@ -34,7 +35,6 @@ model City {
   id    String @id @default(uuid())
   name  String
   state String
-  petId String
   pets  Pet[]
 }
 
