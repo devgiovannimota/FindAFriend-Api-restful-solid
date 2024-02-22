@@ -51,7 +51,7 @@ export class RegisterPetUseCase {
       breed,
       age,
       sex,
-      characteristics: JSON.stringify({ characteristics }),
+      characteristics: JSON.stringify(characteristics),
       description,
       cityId,
       orgId,
