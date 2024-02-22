@@ -23,4 +23,11 @@ export class InMemoryOrgsRepository implements IOrgsRepository {
     }
     return organization;
   }
+  async findById(id: string) {
+    const organization = this.orgs.find((item) => item.id === id);
+    if (!organization) {
+      return null;
+    }
+    return organization;
+  }
 }
