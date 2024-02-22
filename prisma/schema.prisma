@@ -41,6 +41,7 @@ model City {
 
 model Org {
   id       String @id @default(uuid())
+  name     String
   addres   String
   whatsapp String
   email    String @unique

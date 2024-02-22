@@ -10,7 +10,7 @@ describe("Register City Use Case", () => {
     citiesRepository = new InMemoryCitiesRepository();
     registerCityUseCase = new RegisterCityUseCase(citiesRepository);
   });
-  it("Should be able to create a city", async () => {
+  it("Should be able to register a city", async () => {
     const { city } = await registerCityUseCase.execute({
       name: "Americana",
       state: "São Paulo",
