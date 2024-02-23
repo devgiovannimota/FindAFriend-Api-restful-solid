@@ -29,8 +29,8 @@ describe("Register Pet Use Case", () => {
       breed: undefined,
       characteristics: {
         color: "black",
-        height: 5,
-        weight: 3,
+        height: "5",
+        weight: "3",
       },
       description: "Gotosa dms",
       orgId: organizantion.id,

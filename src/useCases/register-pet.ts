@@ -4,6 +4,7 @@ import { IPetsRepository } from "@/repositories/pets-repository";
 import { Pet } from "@prisma/client";
 
 interface PetCharacteristics {
+  [key: string]: string | number;
   color: string;
   height: number;
   weight: number;
@@ -43,13 +44,16 @@ export class RegisterPetUseCase {
     if (!org) {
       throw new OrgNotFoundError();
     }
+    if (!breed?.trim()) {
+      breed = "undefined breed";
+    }
     const pet = await this.petRepository.create({
       name,
       species,
       breed,
       age,
       sex,
-      characteristics: JSON.stringify(characteristics),
+      characteristics,
       description,
       orgId,
     });
