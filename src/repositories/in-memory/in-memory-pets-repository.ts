@@ -1,5 +1,5 @@
 import { Pet, Prisma } from "@prisma/client";
-import { IPetsRepository } from "../prisma/pets-repository";
+import { IPetsRepository } from "../pets-repository";
 import { randomUUID } from "crypto";
 import { JsonValue } from "@prisma/client/runtime/library";
 

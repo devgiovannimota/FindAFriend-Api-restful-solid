@@ -1,4 +1,4 @@
-import { ICitiesRepository } from "@/repositories/prisma/cities-repository";
+import { ICitiesRepository } from "@/repositories/cities-repository";
 import { City } from "@prisma/client";
 
 interface IRegisterCityUseCaseRequest {

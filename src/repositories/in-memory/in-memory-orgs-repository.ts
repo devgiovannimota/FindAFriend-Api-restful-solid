@@ -1,7 +1,6 @@
 import { Org, Prisma } from "@prisma/client";
-import { IOrgsRepository } from "../prisma/orgs-repository";
+import { IOrgsRepository } from "../orgs-repository";
 import { randomUUID } from "crypto";
-import { OrgAlreadyExistsError } from "@/errors/org-already-exists-error";
 
 export class InMemoryOrgsRepository implements IOrgsRepository {
   public orgs: Org[] = [];

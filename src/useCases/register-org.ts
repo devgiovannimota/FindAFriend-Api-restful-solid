@@ -1,5 +1,5 @@
 import { OrgAlreadyExistsError } from "@/errors/org-already-exists-error";
-import { IOrgsRepository } from "@/repositories/prisma/orgs-repository";
+import { IOrgsRepository } from "@/repositories/orgs-repository";
 import { Org } from "@prisma/client";
 
 interface RegisterUseCaseRequest {

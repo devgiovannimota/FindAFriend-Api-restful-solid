@@ -1,6 +1,6 @@
 import { OrgNotFoundError } from "@/errors/org-not-found-error";
-import { IOrgsRepository } from "@/repositories/prisma/orgs-repository";
-import { IPetsRepository } from "@/repositories/prisma/pets-repository";
+import { IOrgsRepository } from "@/repositories/orgs-repository";
+import { IPetsRepository } from "@/repositories/pets-repository";
 import { Pet } from "@prisma/client";
 
 interface PetCharacteristics {

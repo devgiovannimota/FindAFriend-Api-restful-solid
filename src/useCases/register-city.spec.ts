@@ -12,10 +12,10 @@ describe("Register City Use Case", () => {
   });
   it("Should be able to register a city", async () => {
     const { city } = await registerCityUseCase.execute({
-      name: "Americana",
+      name: "Sbo",
       state: "São Paulo",
     });
-
+    console.log(city.name);
     expect(city.id).toEqual(expect.any(String));
   });
 });
