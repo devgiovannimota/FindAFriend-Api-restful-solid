@@ -15,7 +15,6 @@ export class InMemoryPetsRepository implements IPetsRepository {
       sex: data.sex,
       characteristics: data.characteristics as JsonValue,
       description: data.description,
-      cityId: data.cityId,
       orgId: data.orgId,
     };
     this.pets.push(pet);

@@ -18,6 +18,8 @@ describe("Register Pet Use Case", () => {
       addres: "rua ingas",
       email: "puro talento",
       name: "lalaa",
+      city: "Americana",
+      state: "Sp",
       whatsapp: "93929329",
     });
 
@@ -30,14 +32,11 @@ describe("Register Pet Use Case", () => {
         height: 5,
         weight: 3,
       },
-      cityId: "cidadade-01",
       description: "Gotosa dms",
       orgId: organizantion.id,
       sex: "female",
       species: "dog",
     });
-    console.log(pet);
-    console.log(pet.characteristics);
     expect(pet.id).toEqual(expect.any(String));
   });
 });

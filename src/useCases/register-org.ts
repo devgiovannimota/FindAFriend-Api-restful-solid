@@ -5,6 +5,8 @@ import { Org } from "@prisma/client";
 interface RegisterUseCaseRequest {
   addres: string;
   name: string;
+  city: string;
+  state: string;
   whatsapp: string;
   email: string;
 }
@@ -17,6 +19,8 @@ export class RegisterOrgUseCase {
   async execute({
     addres,
     name,
+    city,
+    state,
     email,
     whatsapp,
   }: RegisterUseCaseRequest): Promise<RegisterUseCaseResponse> {
@@ -28,6 +32,8 @@ export class RegisterOrgUseCase {
       addres,
       email,
       name,
+      city,
+      state,
       whatsapp,
     });
     return { org };

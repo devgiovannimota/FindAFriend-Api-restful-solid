@@ -17,6 +17,8 @@ describe("Register Orgs Use Case", () => {
       addres: "Rua ingás",
       email: "Giovanni Mota de Oliveira",
       name: "Anjos da guarda",
+      state: "SP",
+      city: "Americana",
       whatsapp: "19 98921-8480",
     });
     expect(org.id).toEqual(expect.any(String));
@@ -27,6 +29,8 @@ describe("Register Orgs Use Case", () => {
       addres: "Rua ingás",
       email: "giovaniname@hotmail.com",
       name: "Anjos da guarda",
+      state: "SP",
+      city: "Americana",
       whatsapp: "19 98921-8480",
     });
     await expect(() =>
@@ -34,6 +38,8 @@ describe("Register Orgs Use Case", () => {
         addres: "Rua ingás",
         email: "giovaniname@hotmail.com",
         name: "Anjos da guarda",
+        state: "SP",
+        city: "Americana",
         whatsapp: "19 98921-8480",
       })
     ).rejects.toBeInstanceOf(OrgAlreadyExistsError);

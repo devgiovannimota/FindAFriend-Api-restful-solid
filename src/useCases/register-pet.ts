@@ -17,7 +17,6 @@ interface RegisterPetsUseCaseRequest {
   sex: string;
   characteristics: PetCharacteristics;
   description: string;
-  cityId: string;
   orgId: string;
 }
 
@@ -38,7 +37,6 @@ export class RegisterPetUseCase {
     sex,
     characteristics,
     description,
-    cityId,
     orgId,
   }: RegisterPetsUseCaseRequest): Promise<RegisterPetsUseCaseResponse> {
     const org = await this.orgRepository.findById(orgId);
@@ -53,7 +51,6 @@ export class RegisterPetUseCase {
       sex,
       characteristics: JSON.stringify(characteristics),
       description,
-      cityId,
       orgId,
     });
 

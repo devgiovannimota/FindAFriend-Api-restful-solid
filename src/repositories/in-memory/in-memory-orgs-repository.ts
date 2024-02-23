@@ -10,6 +10,8 @@ export class InMemoryOrgsRepository implements IOrgsRepository {
       name: data.name,
       addres: data.addres,
       whatsapp: data.whatsapp,
+      city: data.city,
+      state: data.state,
       email: data.email,
     };
     this.orgs.push(organization);
