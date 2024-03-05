@@ -19,6 +19,9 @@ describe("Register Pet Use Case", () => {
       email: "puro talento",
       name: "lalaa",
       city: "Americana",
+      password: "123456",
+      latitude: 45.3232,
+      longitude: 43.3232,
       state: "Sp",
       whatsapp: "93929329",
     });
@@ -29,8 +32,8 @@ describe("Register Pet Use Case", () => {
       breed: undefined,
       characteristics: {
         color: "black",
-        height: "5",
-        weight: "3",
+        height: 5,
+        weight: 3,
       },
       description: "Gotosa dms",
       orgId: organizantion.id,

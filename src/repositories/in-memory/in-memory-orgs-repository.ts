@@ -13,11 +13,14 @@ export class InMemoryOrgsRepository implements IOrgsRepository {
       city: data.city,
       state: data.state,
       email: data.email,
+      latitude: new Prisma.Decimal(data.latitude.toString()),
+      longitude: new Prisma.Decimal(data.longitude.toString()),
+      password: data.password,
     };
     this.orgs.push(organization);
     return organization;
   }
-  async findByEmail(email: string): Promise<Org | null> {
+  async findByEmail(email: string) {
     const organization = this.orgs.find((item) => item.email === email);
     if (!organization) {
       return null;

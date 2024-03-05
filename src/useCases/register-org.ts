@@ -7,6 +7,9 @@ interface RegisterUseCaseRequest {
   name: string;
   city: string;
   state: string;
+  password: string;
+  latitude: number;
+  longitude: number;
   whatsapp: string;
   email: string;
 }
@@ -20,6 +23,9 @@ export class RegisterOrgUseCase {
     addres,
     name,
     city,
+    password,
+    latitude,
+    longitude,
     state,
     email,
     whatsapp,
@@ -31,6 +37,9 @@ export class RegisterOrgUseCase {
     const org = await this.orgRepository.create({
       addres,
       email,
+      latitude,
+      longitude,
+      password,
       name,
       city,
       state,

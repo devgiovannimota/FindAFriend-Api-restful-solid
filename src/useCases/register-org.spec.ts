@@ -19,6 +19,9 @@ describe("Register Orgs Use Case", () => {
       name: "Anjos da guarda",
       state: "SP",
       city: "Americana",
+      password: "123456",
+      latitude: 45.3232,
+      longitude: 43.3232,
       whatsapp: "19 98921-8480",
     });
     expect(org.id).toEqual(expect.any(String));
@@ -31,6 +34,9 @@ describe("Register Orgs Use Case", () => {
       name: "Anjos da guarda",
       state: "SP",
       city: "Americana",
+      password: "123456",
+      latitude: 45.3232,
+      longitude: 43.3232,
       whatsapp: "19 98921-8480",
     });
     await expect(() =>
@@ -40,6 +46,9 @@ describe("Register Orgs Use Case", () => {
         name: "Anjos da guarda",
         state: "SP",
         city: "Americana",
+        password: "123456",
+        latitude: 45.3232,
+        longitude: 43.3232,
         whatsapp: "19 98921-8480",
       })
     ).rejects.toBeInstanceOf(OrgAlreadyExistsError);

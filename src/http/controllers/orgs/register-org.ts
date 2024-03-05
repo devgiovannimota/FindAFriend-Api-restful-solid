@@ -12,11 +12,27 @@ export async function registerOrg(
     addres: z.string(),
     whatsapp: z.string(),
     city: z.string(),
+    latitude: z.coerce.number().refine((value) => {
+      return Math.abs(value) <= 90;
+    }),
+    longitude: z.coerce.number().refine((value) => {
+      return Math.abs(value) <= 180;
+    }),
+    password: z.string().min(6),
     state: z.string(),
     email: z.string().email(),
   });
-  const { name, addres, whatsapp, city, state, email } =
-    registerOrgSchema.parse(request.body);
+  const {
+    name,
+    addres,
+    whatsapp,
+    city,
+    state,
+    email,
+    latitude,
+    longitude,
+    password,
+  } = registerOrgSchema.parse(request.body);
   try {
     const registerOrgUseCase = makeRegisterOrgUseCase();
     await registerOrgUseCase.execute({
@@ -24,6 +40,9 @@ export async function registerOrg(
       addres,
       city,
       email,
+      latitude,
+      longitude,
+      password,
       state,
       whatsapp,
     });
