@@ -28,10 +28,10 @@ export class InMemoryOrgsRepository implements IOrgsRepository {
     return organization;
   }
   async findById(id: string) {
-    const organization = this.orgs.find((item) => item.id === id);
-    if (!organization) {
+    const org = this.orgs.find((item) => item.id === id);
+    if (!org) {
       return null;
     }
-    return organization;
+    return org;
   }
 }

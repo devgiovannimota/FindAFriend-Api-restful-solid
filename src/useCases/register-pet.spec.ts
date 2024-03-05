@@ -10,7 +10,7 @@ let registerPetsUseCase: RegisterPetUseCase;
 describe("Register Pet Use Case", () => {
   beforeEach(() => {
     orgRepository = new InMemoryOrgsRepository();
-    petRepository = new InMemoryPetsRepository();
+    petRepository = new InMemoryPetsRepository(orgRepository);
     registerPetsUseCase = new RegisterPetUseCase(petRepository, orgRepository);
   });
   it("Should be able to register a pet", async () => {
