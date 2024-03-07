@@ -11,10 +11,36 @@ export class PrismaPetsRepository implements IPetsRepository {
     });
     return pet;
   }
-  async create(data: Prisma.PetUncheckedCreateInput) {
-    const pet = await prisma.pet.create({
-      data,
+  async findAll(city: string) {
+    const orgsWithPets = await prisma.org.findMany({
+      where: {
+        city: city,
+      },
+      include: {
+        pets: true,
+      },
     });
+
+    const pets = orgsWithPets.map((org) => org.pets).flat();
+
+    if (pets.length === 0) {
+      return null;
+    }
+
+    return pets;
+  }
+  async create(data: Prisma.PetUncheckedCreateInput) {
+    const pet = await prisma.pet.create({ data });
     return pet;
+  }
+  async getPetsByCharacteristics(characteristics: string) {
+    const pets = await prisma.pet.findMany({
+      where: {
+        characteristics: {
+          array_contains: characteristics,
+        },
+      },
+    });
+    return pets;
   }
 }
