@@ -1,5 +1,6 @@
 import { IPetsRepository } from "@/repositories/pets-repository";
 import { Pet } from "@prisma/client";
+import { PetsNotFound } from "./errors/pets-not-found-error";
 
 interface GetPetsByCityUseCaseRequest {
   city: string;
@@ -15,6 +16,9 @@ export class GetPetsByCityUseCase {
     city,
   }: GetPetsByCityUseCaseRequest): Promise<GetPetsByCityUseCaseResponse> {
     const pets = await this.orgRepository.findAll(city);
+    if (pets.length === 0) {
+      throw new PetsNotFound();
+    }
     return { pets };
   }
 }

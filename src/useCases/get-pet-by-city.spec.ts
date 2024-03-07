@@ -2,6 +2,7 @@ import { InMemoryPetsRepository } from "@/repositories/in-memory/in-memory-pets-
 import { beforeEach, describe, expect, it } from "vitest";
 import { GetPetsByCityUseCase } from "./get-pet-by-city";
 import { InMemoryOrgsRepository } from "@/repositories/in-memory/in-memory-orgs-repository";
+import { PetsNotFound } from "./errors/pets-not-found-error";
 
 let petRepository: InMemoryPetsRepository;
 let getpetbyCityUseCase: GetPetsByCityUseCase;
@@ -83,10 +84,13 @@ describe("get pet by city use case", () => {
       sex: "male",
       species: "dog",
     });
-    console.log(org2.city);
 
-    const pets = await getpetbyCityUseCase.execute({ city: org2.city });
-    console.log(pets);
+    await getpetbyCityUseCase.execute({ city: org2.city });
     expect(org.id).toEqual(expect.any(String));
+  });
+  it("Should not be able to search for cities with no registered pets", async () => {
+    await expect(() =>
+      getpetbyCityUseCase.execute({ city: "americana" })
+    ).rejects.toBeInstanceOf(PetsNotFound);
   });
 });
