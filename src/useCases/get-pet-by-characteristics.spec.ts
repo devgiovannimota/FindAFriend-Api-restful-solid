@@ -1,39 +1,26 @@
 import { InMemoryPetsRepository } from "@/repositories/in-memory/in-memory-pets-repository";
 import { beforeEach, describe, expect, it } from "vitest";
-import { GetPetsByCityUseCase } from "./get-pet-by-city";
 import { InMemoryOrgsRepository } from "@/repositories/in-memory/in-memory-orgs-repository";
-import { PetsNotFound } from "./errors/pets-not-found-error";
+import { GetPetByCharacteristicsUseCase } from "./get-pet-by-characteristics";
 
 let petRepository: InMemoryPetsRepository;
-let getpetbyCityUseCase: GetPetsByCityUseCase;
+let getPetByCharacteristics: GetPetByCharacteristicsUseCase;
 let orgRepository: InMemoryOrgsRepository;
 
-describe("get pet by city use case", () => {
+describe("Get pet by characteristics Use Case", () => {
   beforeEach(() => {
     orgRepository = new InMemoryOrgsRepository();
     petRepository = new InMemoryPetsRepository(orgRepository);
-    getpetbyCityUseCase = new GetPetsByCityUseCase(petRepository);
+    getPetByCharacteristics = new GetPetByCharacteristicsUseCase(petRepository);
   });
 
-  it("Should be able to get a pet by city", async () => {
+  it("Should be able to get a pet by characteristics", async () => {
     const org = await orgRepository.create({
       addres: "Rua ingás",
       email: "Giovanni Mota de Oliveira",
       name: "Anjos da guarda",
       state: "SP",
       city: "Americana",
-      password: "123456",
-      latitude: 45.3232,
-      longitude: 43.3232,
-      whatsapp: "19 98921-8480",
-    });
-
-    const org2 = await orgRepository.create({
-      addres: "Rua ingás",
-      email: "Giovanni Mota de Oliveira",
-      name: "Anjos da guarda",
-      state: "SP",
-      city: "Santa barbara",
       password: "123456",
       latitude: 45.3232,
       longitude: 43.3232,
@@ -56,21 +43,6 @@ describe("get pet by city use case", () => {
     });
 
     await petRepository.create({
-      name: "yummi",
-      age: "5 years",
-      breed: undefined,
-      characteristics: {
-        color: "black",
-        height: 5,
-        weight: 3,
-      },
-      description: "Gotosa dms",
-      orgId: org2.id,
-      sex: "female",
-      species: "cat",
-    });
-
-    await petRepository.create({
       name: "Evo",
       age: "5 years",
       breed: undefined,
@@ -85,14 +57,43 @@ describe("get pet by city use case", () => {
       species: "dog",
     });
 
-    const pets = await getpetbyCityUseCase.execute({ city: org2.city });
-    expect(pets.pets).toHaveLength(1);
-    expect(pets.pets).toEqual([expect.objectContaining({ name: "yummi" })]);
-  });
+    await petRepository.create({
+      name: "Eve",
+      age: "5 years",
+      breed: undefined,
+      characteristics: {
+        color: "rajada",
+        height: 5,
+        weight: 3,
+      },
+      description: "Gotosa dms",
+      orgId: org.id,
+      sex: "female",
+      species: "cat",
+    });
 
-  it("Should not be able to search for cities with no registered pets", async () => {
-    await expect(() =>
-      getpetbyCityUseCase.execute({ city: "americana" })
-    ).rejects.toBeInstanceOf(PetsNotFound);
+    await petRepository.create({
+      name: "Yummi",
+      age: "2 years",
+      breed: undefined,
+      characteristics: {
+        color: "rajada",
+        height: 5,
+        weight: 3,
+      },
+      description: "Gotosa dms",
+      orgId: org.id,
+      sex: "female",
+      species: "cat",
+    });
+
+    const pets = await getPetByCharacteristics.execute({
+      characteristics: "rajada",
+    });
+
+    expect(pets.pets).toHaveLength(2);
+    expect(pets.pets).toEqual(
+      expect.arrayContaining([expect.any(Object), expect.any(Object)])
+    );
   });
 });

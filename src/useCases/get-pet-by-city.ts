@@ -16,7 +16,7 @@ export class GetPetsByCityUseCase {
     city,
   }: GetPetsByCityUseCaseRequest): Promise<GetPetsByCityUseCaseResponse> {
     const pets = await this.orgRepository.findAll(city);
-    if (pets.length === 0) {
+    if (pets === null || pets.length === 0) {
       throw new PetsNotFound();
     }
     return { pets };

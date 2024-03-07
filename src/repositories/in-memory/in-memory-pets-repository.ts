@@ -6,7 +6,7 @@ import { InMemoryOrgsRepository } from "./in-memory-orgs-repository";
 
 export class InMemoryPetsRepository implements IPetsRepository {
   public pets: Pet[] = [];
-  constructor(private orgsRepository: InMemoryOrgsRepository) {}
+  constructor(private orgRepository: InMemoryOrgsRepository) {}
   async create(data: Prisma.PetUncheckedCreateInput) {
     const pet = {
       id: randomUUID(),
@@ -32,7 +32,7 @@ export class InMemoryPetsRepository implements IPetsRepository {
   async findAll(city: string) {
     const allPets: Pet[] = [];
 
-    const orgsByCities = this.orgsRepository.orgs.filter(
+    const orgsByCities = this.orgRepository.orgs.filter(
       (item) => item.city === city
     );
 
@@ -41,6 +41,16 @@ export class InMemoryPetsRepository implements IPetsRepository {
       allPets.push(...petsInOrg);
     });
 
+    if (allPets.length === 0) {
+      return null;
+    }
     return allPets;
+  }
+  async getPetsByCharacteristics(characteristics: string) {
+    const pets = this.pets.filter((pets) => {
+      const petCharacteristics = JSON.stringify(pets.characteristics);
+      return petCharacteristics.includes(characteristics);
+    });
+    return pets;
   }
 }
