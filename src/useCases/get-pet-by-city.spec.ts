@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { GetPetsByCityUseCase } from "./get-pet-by-city";
 import { InMemoryOrgsRepository } from "@/repositories/in-memory/in-memory-orgs-repository";
 import { PetsNotFound } from "./errors/pets-not-found-error";
+import { CityNotFoundError } from "./errors/city-not-found-error";
 
 let petRepository: InMemoryPetsRepository;
 let getpetbyCityUseCase: GetPetsByCityUseCase;
@@ -94,5 +95,11 @@ describe("get pet by city use case", () => {
     await expect(() =>
       getpetbyCityUseCase.execute({ city: "americana" })
     ).rejects.toBeInstanceOf(PetsNotFound);
+  });
+
+  it("Should not be able to search with no city mentioned", async () => {
+    await expect(() =>
+      getpetbyCityUseCase.execute({ city: "" })
+    ).rejects.toBeInstanceOf(CityNotFoundError);
   });
 });
