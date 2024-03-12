@@ -2,7 +2,6 @@ import { InMemoryOrgsRepository } from "@/repositories/in-memory/in-memory-orgs-
 import { beforeEach, describe, expect, it } from "vitest";
 import { AuthenticateUseCase } from "./authenticate";
 import { hash } from "bcryptjs";
-import { string } from "zod";
 import { InvalidCredentialsError } from "./errors/invalide-credentials-error";
 
 let orgRepository: InMemoryOrgsRepository;

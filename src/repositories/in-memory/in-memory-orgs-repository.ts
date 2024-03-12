@@ -9,6 +9,7 @@ export class InMemoryOrgsRepository implements IOrgsRepository {
       id: randomUUID(),
       name: data.name,
       addres: data.addres,
+      role: data.role || "MEMBMER",
       whatsapp: data.whatsapp,
       city: data.city,
       state: data.state,
