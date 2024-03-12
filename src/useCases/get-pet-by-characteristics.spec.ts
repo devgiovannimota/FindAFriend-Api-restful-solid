@@ -30,7 +30,7 @@ describe("Get pet by characteristics Use Case", () => {
     await petRepository.create({
       name: "Eve",
       age: "5 years",
-      breed: undefined,
+      breed: "undefined",
       characteristics: {
         color: "black",
         height: 5,
@@ -45,7 +45,7 @@ describe("Get pet by characteristics Use Case", () => {
     await petRepository.create({
       name: "Evo",
       age: "5 years",
-      breed: undefined,
+      breed: "undefined",
       characteristics: {
         color: "black",
         height: 5,
@@ -60,7 +60,7 @@ describe("Get pet by characteristics Use Case", () => {
     await petRepository.create({
       name: "Eve",
       age: "5 years",
-      breed: undefined,
+      breed: "undefined",
       characteristics: {
         color: "rajada",
         height: 5,
@@ -75,7 +75,7 @@ describe("Get pet by characteristics Use Case", () => {
     await petRepository.create({
       name: "Yummi",
       age: "2 years",
-      breed: undefined,
+      breed: "undefined",
       characteristics: {
         color: "rajada",
         height: 5,

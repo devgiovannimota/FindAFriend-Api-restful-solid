@@ -20,7 +20,6 @@ export class GetPetsByCityUseCase {
       throw new CityNotFoundError();
     }
     const pets = await this.orgRepository.findAll(city);
-    console.log(pets);
     if (pets === null || pets.length === 0) {
       throw new PetsNotFound();
     }

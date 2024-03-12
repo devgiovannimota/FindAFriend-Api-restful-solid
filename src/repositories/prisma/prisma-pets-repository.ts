@@ -34,13 +34,11 @@ export class PrismaPetsRepository implements IPetsRepository {
     return pet;
   }
   async getPetsByCharacteristics(characteristics: string) {
-    const pets = await prisma.pet.findMany({
-      where: {
-        characteristics: {
-          array_contains: characteristics,
-        },
-      },
+    const pets = await prisma.pet.findMany();
+    const filteredPets = pets.filter((pet) => {
+      const characteristicsString = JSON.stringify(pet.characteristics);
+      return characteristicsString.includes(characteristics);
     });
-    return pets;
+    return filteredPets;
   }
 }

@@ -1,5 +1,6 @@
 import { IPetsRepository } from "@/repositories/pets-repository";
 import { Pet } from "@prisma/client";
+import { PetsNotFound } from "./errors/pets-not-found-error";
 
 interface GetPetByCharacteristicsUseCaseRequest {
   characteristics: string;
@@ -17,7 +18,9 @@ export class GetPetByCharacteristicsUseCase {
     const pets = await this.petsRepository.getPetsByCharacteristics(
       characteristics
     );
-
+    if (!pets) {
+      throw new PetsNotFound();
+    }
     return { pets };
   }
 }
