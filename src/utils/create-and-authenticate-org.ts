@@ -4,7 +4,10 @@ import { randomUUID } from "crypto";
 import { FastifyInstance } from "fastify";
 import request from "supertest";
 
-export async function createAndAuthenticateOrg(app: FastifyInstance) {
+export async function createAndAuthenticateOrg(
+  app: FastifyInstance,
+  isAdmin = false
+) {
   const org = await prisma.org.create({
     data: {
       id: randomUUID(),
@@ -13,6 +16,7 @@ export async function createAndAuthenticateOrg(app: FastifyInstance) {
       name: "Anjos da guarda",
       state: "SP",
       city: "Americana",
+      role: isAdmin ? "ADMIN" : "MEMBMER",
       password: await hash("123456", 6),
       latitude: 45.3232,
       longitude: 43.3232,
@@ -26,7 +30,8 @@ export async function createAndAuthenticateOrg(app: FastifyInstance) {
       email: "giovaniname@hotmail.com",
       password: "123456",
     });
+  const cookies = AuthResponse.get("Set-Cookie");
   const { token } = AuthResponse.body;
   const { id } = org;
-  return { token, id };
+  return { token, id, cookies };
 }

@@ -12,7 +12,8 @@ describe("Get pet by characteristics e2e", () => {
   });
 
   it("Should be able to get pet by characteristics", async () => {
-    const { token, id } = await createAndAuthenticateOrg(app);
+    const { token, id } = await createAndAuthenticateOrg(app, true);
+    console.log(token);
 
     await request(app.server)
       .post("/register/pet")

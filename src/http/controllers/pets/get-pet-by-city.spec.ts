@@ -13,7 +13,7 @@ describe("Get pet by city use case", () => {
   });
 
   it("Should be able to search pet by city", async () => {
-    const { token, id } = await createAndAuthenticateOrg(app);
+    const { token, id } = await createAndAuthenticateOrg(app, true);
 
     await request(app.server)
       .post("/register/pet")
