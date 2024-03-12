@@ -13,6 +13,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  MEMBMER
+  ADMIN
+}
+
 model Pet {
   id              String @id @default(uuid())
   name            String
@@ -34,6 +39,7 @@ model Org {
   state     String
   city      String
   addres    String
+  role      Role    @default(MEMBMER)
   whatsapp  String
   password  String
   email     String  @unique

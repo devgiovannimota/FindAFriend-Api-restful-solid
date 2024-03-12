@@ -11,9 +11,9 @@ interface GetPetUseCaseResponse {
 }
 
 export class GetPetUseCase {
-  constructor(private orgRepository: IPetsRepository) {}
+  constructor(private petsRepository: IPetsRepository) {}
   async execute({ id }: GetPetUseCaseRequest): Promise<GetPetUseCaseResponse> {
-    const pet = await this.orgRepository.findById(id);
+    const pet = await this.petsRepository.findById(id);
     if (!pet) {
       throw new PetsNotFound();
     }

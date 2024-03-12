@@ -1,6 +1,5 @@
 import { InMemoryPetsRepository } from "@/repositories/in-memory/in-memory-pets-repository";
 import { beforeEach, describe, expect, it } from "vitest";
-import { GetPetsByCityUseCase } from "./get-pet-by-city";
 import { InMemoryOrgsRepository } from "@/repositories/in-memory/in-memory-orgs-repository";
 import { GetPetUseCase } from "./get-pet";
 import { PetsNotFound } from "./errors/pets-not-found-error";
@@ -32,7 +31,7 @@ describe("Get Pet Use Case", () => {
     const pet = await petRepository.create({
       name: "Eve",
       age: "5 years",
-      breed: undefined,
+      breed: "undefined",
       characteristics: {
         color: "black",
         height: 5,
