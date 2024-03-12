@@ -18,7 +18,7 @@ export async function getPetByCity(
     const getPetByCityUseCase = makeGetPetByCityUseCase();
 
     const { pets } = await getPetByCityUseCase.execute({ city });
-    return reply.status(201).send(pets);
+    return reply.status(200).send(pets);
   } catch (er) {
     if (er instanceof PetsNotFound || er instanceof CityNotFoundError) {
       return reply.status(409).send({ message: er.message });
